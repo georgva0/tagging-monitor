@@ -1,13 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-size: 18px;
+  font-family: "Source Serif Pro", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (min-width: 1200px) {
+  .content-container {
+    max-width: 900px;
+  }
+}
+
+.underline {
+  color: #000;
+  border-bottom: 1px dotted rgb(139, 7, 7);
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
