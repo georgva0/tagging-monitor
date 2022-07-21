@@ -1,34 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../components/Loader";
-import { Table } from "reactstrap";
+//import { Table } from "reactstrap";
+import Table from "react-bootstrap/Table";
 //import HomepageTable from "../components/HomepageTable";
 import { Container, Row, Col } from "reactstrap";
 
-const HomePage = () => {
+function HomePage() {
   const [scores, setScores] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch(
-      //`https://sheets.googleapis.com/v4/spreadsheets/13YqOJHhi2lrt4hFMQ4FdZ6rv2N_Gf9oyMg2fdObTn4E/values/data!A1:B40?key=${process.env.REACT_APP_GOOGLE_CLOUD_KEY}`
-      `https://sheets.googleapis.com/v4/spreadsheets/13YqOJHhi2lrt4hFMQ4FdZ6rv2N_Gf9oyMg2fdObTn4E/values/data!A1:B40?key=AIzaSyBv7Lm0OUj3hPTgcVoep2PyZBz6G2dTOrA`
+      `https://sheets.googleapis.com/v4/spreadsheets/13YqOJHhi2lrt4hFMQ4FdZ6rv2N_Gf9oyMg2fdObTn4E/values/data!A2:B40?key=${process.env.REACT_APP_GOOGLE_CLOUD_KEY}`
     )
       .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          setScores(data);
-        }
-      })
-      .catch((error) => console.log(error))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .then((data) => setScores(data.values));
   }, []);
 
-  console.log(scores);
+  //return JSON.stringify(scores || "");
 
   return (
     <Container className="content-container">
+      {" "}
       <>
         <Row>
           <Col md="11">
@@ -38,11 +30,11 @@ const HomePage = () => {
             <p className="mt-4">
               This web application monitors the latest <strong>10</strong>{" "}
               published items published by each BBC World Service language and
-              scores them by the quality of tagging (update interval:{" "}
+              scores them by the quality of tagging. (Update interval:{" "}
               <span className="text-danger">
                 <strong>15</strong>
               </span>{" "}
-              min).
+              min)
             </p>
             <p>
               An article gets maximum points if it has{" "}
@@ -65,7 +57,7 @@ const HomePage = () => {
         </Row>
 
         <Row>
-          <Table hover>
+          <Table striped borderless hover>
             <thead>
               <tr>
                 <th>Language service</th>
@@ -73,73 +65,26 @@ const HomePage = () => {
               </tr>
             </thead>
             <tbody>
-              {isLoading && <Loader />}
               {scores &&
-                scores.values.map((score, key) => {
-                  <tr key={key}>
-                    <th scope="row">
+                scores.map((score) => (
+                  <tr key={score[1]}>
+                    <td>
                       <a
-                        href={`/{score[0]}`}
+                        href={"/" + score[0]}
                         className="text-dark text-decoration-none underline"
                       >
                         {score[0].toUpperCase()}
                       </a>
-                    </th>
+                    </td>
                     <td>{score[1]}</td>
-                  </tr>;
-                })}
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </Row>
-
-        {/* <Row>
-          <Table hover>
-            <thead>
-              <tr>
-                <th>Service</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">
-                  <a
-                    href="https://www.bbc.com/amharic"
-                    className="text-dark text-decoration-none underline"
-                  >
-                    Amharic
-                  </a>
-                </th>
-                <td>29</td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <a
-                    href="https://www.bbc.com/amharic"
-                    className="text-dark text-decoration-none underline"
-                  >
-                    Afrique
-                  </a>
-                </th>
-                <td>29</td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <a
-                    href="https://www.bbc.com/amharic"
-                    className="text-dark text-decoration-none underline"
-                  >
-                    Mundo
-                  </a>
-                </th>
-                <td>29</td>
-              </tr>
-            </tbody>
-          </Table>
-        </Row> */}
       </>
     </Container>
   );
-};
+}
 
 export default HomePage;
