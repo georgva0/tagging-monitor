@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Loader from "../components/Loader";
-//import { Table } from "reactstrap";
 import Table from "react-bootstrap/Table";
-//import HomepageTable from "../components/HomepageTable";
 import { Container, Row, Col } from "reactstrap";
 
 function HomePage() {
@@ -66,14 +63,20 @@ function HomePage() {
             </thead>
             <tbody>
               {scores &&
-                scores.map((score) => (
-                  <tr key={score[1]}>
+                scores.map((score, key) => (
+                  <tr key={score[0]}>
                     <td>
                       <a
                         href={"/" + score[0]}
                         className="text-dark text-decoration-none underline"
                       >
-                        {score[0].toUpperCase()}
+                        {score[0].toUpperCase() === "PORTUGUESE"
+                          ? "BRAZIL"
+                          : score[0].toUpperCase() === "ZHONGWEN/SIMP"
+                          ? "CHINESE"
+                          : score[0].toUpperCase() === "SERBIAN/LAT"
+                          ? "SERBIAN"
+                          : score[0].toUpperCase()}
                       </a>
                     </td>
                     <td>{score[1]}</td>

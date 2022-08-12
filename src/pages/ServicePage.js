@@ -1,19 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../components/Loader";
-import {
-  Container,
-  Card,
-  CardImg,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Table,
-  Row,
-  Col,
-  Badge,
-  ListGroup,
-  ListGroupItem,
-} from "reactstrap";
+import { Container, Table, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
 import services from "../listings/services";
 import NotFound from "./NotFound";
@@ -24,23 +11,27 @@ const ServicePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { service } = useParams();
+  if (service === "") {
+  }
   const serviceIdentifier = services.find(
     (serviceIdentifier) => serviceIdentifier.serviceUrl === service
   );
 
-  //   useEffect(() => {
-  //     fetch(`http://localhost:8000/api/${region}`)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         if (data) {
-  //           setArticles(data);
-  //         }
-  //       })
-  //       .catch((error) => console.log(error))
-  //       .finally(() => {
-  //         setIsLoading(false);
-  //       });
-  //   }, [region]);
+  useEffect(() => {
+    fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/13YqOJHhi2lrt4hFMQ4FdZ6rv2N_Gf9oyMg2fdObTn4E/values/${service}!A2:H20?key=${process.env.REACT_APP_GOOGLE_CLOUD_KEY}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setArticles(data.values);
+        }
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [service]);
 
   if (!serviceIdentifier) return <NotFound />;
 
@@ -51,7 +42,7 @@ const ServicePage = () => {
           <h3 className="mt-5">
             {" "}
             <span className="text-danger">
-              {serviceIdentifier.serviceName}
+              {serviceIdentifier.serviceName.toUpperCase()}
             </span>{" "}
             ｜ Tagging performance report
           </h3>
@@ -75,7 +66,7 @@ const ServicePage = () => {
 
           <Toggle />
 
-          <Table hover>
+          <Table hover borderless>
             <thead>
               <tr>
                 <th>Article</th>
@@ -86,64 +77,51 @@ const ServicePage = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">
-                  <a
-                    href="https://www.bbc.com/amharic"
-                    className="text-dark text-decoration-none underline"
-                  >
-                    ¿Fin del pacifismo en Japón? La polémica reforma
-                    constitucional por la que puede cambiar el papel de los
-                    militares en ese país asiático
-                  </a>
-                </th>
-                <td className="text-success">1</td>
-                <td className="text-success">4</td>
-                <td className="text-success">1</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <a
-                    href="https://www.bbc.com/amharic"
-                    className="text-dark text-decoration-none underline"
-                  >
-                    ¿Por qué ya no progresamos como progresábamos antes?
-                  </a>
-                </th>
-                <td className="text-danger">0</td>
-                <td className="text-danger">0</td>
-                <td className="text-danger">0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <a
-                    href="https://www.bbc.com/amharic"
-                    className="text-dark text-decoration-none underline"
-                  >
-                    ¿Por qué ya no progresamos como progresábamos antes?
-                  </a>
-                </th>
-                <td className="text-danger">0</td>
-                <td className="text-warning">2</td>
-                <td className="text-success">1</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <a
-                    href="https://www.bbc.com/amharic"
-                    className="text-dark text-decoration-none underline"
-                  >
-                    ¿Por qué ya no progresamos como progresábamos antes?
-                  </a>
-                </th>
-                <td className="text-success">1</td>
-                <td className="text-warning">7</td>
-                <td className="text-danger">0</td>
-                <td>1</td>
-              </tr>
+              {isLoading && Loader}
+
+              {articles &&
+                articles.map((article, key) => (
+                  <tr key={article[0]}>
+                    <th scope="row">
+                      <a
+                        href={article[0]}
+                        className="text-dark text-decoration-none underline"
+                      >
+                        {article[7]}
+                      </a>
+                    </th>
+                    <td
+                      className={
+                        parseInt(article[2]) === 1
+                          ? "bg-success text-white text-center m-2"
+                          : "bg-danger text-white text-center m-2"
+                      }
+                    >
+                      {article[2]}
+                    </td>
+                    <td
+                      className={
+                        parseInt(article[3]) === 0
+                          ? "bg-danger text-white text-center"
+                          : parseInt(article[3]) > 2 && parseInt(article[3]) < 6
+                          ? "bg-success text-white text-center"
+                          : "bg-warning text-white text-center"
+                      }
+                    >
+                      {article[3]}
+                    </td>
+                    <td
+                      className={
+                        parseInt(article[4]) === 1
+                          ? "bg-success text-white text-center"
+                          : "bg-danger text-white text-center"
+                      }
+                    >
+                      {article[4]}
+                    </td>
+                    <td className="text-center">{article[5]}</td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </Col>

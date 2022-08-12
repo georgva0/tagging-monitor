@@ -26,28 +26,20 @@ class Toggle extends Component {
           <Table size="sm" borderless>
             <tbody>
               <tr>
-                <th scope="row">
-                  <Badge class="success">Green</Badge>
+                <th scope="row" className="bg-success text-white text-center">
+                  Green
                 </th>
                 <td>Tagging is optimal</td>
               </tr>
-              {/* <tr>
-                <th scope="row">
-                  <Badge color="dark">Black</Badge>
-                </th>
-                <td>
-                  Article is <strong>not</strong> tagged
-                </td>
-              </tr> */}
               <tr>
-                <th scope="row">
-                  <Badge color="danger">Red</Badge>
+                <th scope="row" className="bg-danger text-white text-center">
+                  Red
                 </th>
-                <td>Article is completely missing a tag category</td>
+                <td>Article is missing a tag category / has too many tags</td>
               </tr>
               <tr>
-                <th scope="row">
-                  <Badge color="warning">Orange</Badge>
+                <th scope="row" className="bg-warning text-white text-center">
+                  Orange
                 </th>
                 <td>Tagging requires improvement</td>
               </tr>

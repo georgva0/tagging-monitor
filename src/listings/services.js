@@ -63,7 +63,7 @@ const services = [
     serviceName: "Burmese",
   },
   {
-    serviceUrl: "chinese",
+    serviceUrl: "zhongwen",
     serviceName: "Chinese",
   },
   {
@@ -143,7 +143,7 @@ const services = [
     serviceName: "Serbian",
   },
   {
-    serviceUrl: "turkish",
+    serviceUrl: "turkce",
     serviceName: "Turkish",
   },
   {
@@ -151,7 +151,7 @@ const services = [
     serviceName: "Ukrainian",
   },
   {
-    serviceUrl: "brasil",
+    serviceUrl: "portuguese",
     serviceName: "Brasil",
   },
   {
