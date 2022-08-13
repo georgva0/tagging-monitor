@@ -64,7 +64,7 @@ const services = [
   },
   {
     serviceUrl: "zhongwen",
-    serviceName: "Chinese",
+    serviceName: "Zhongwen",
   },
   {
     serviceUrl: "indonesia",
