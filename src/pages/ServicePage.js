@@ -74,6 +74,7 @@ const ServicePage = () => {
                 <th>About</th>
                 <th>Format</th>
                 <th>Score</th>
+                <th>Optimo</th>
               </tr>
             </thead>
             <tbody>
@@ -93,8 +94,8 @@ const ServicePage = () => {
                     <td
                       className={
                         parseInt(article[2]) === 1
-                          ? "bg-success text-white text-center m-2"
-                          : "bg-danger text-white text-center m-2"
+                          ? "bg-success text-white text-center"
+                          : "bg-danger text-white text-center"
                       }
                     >
                       {article[2]}
@@ -120,6 +121,15 @@ const ServicePage = () => {
                       {article[4]}
                     </td>
                     <td className="text-center">{article[5]}</td>
+                    <td
+                      className={
+                        article[6] === "TRUE"
+                          ? "text-primary text-center"
+                          : "text-danger text-center"
+                      }
+                    >
+                      {article[6]}
+                    </td>
                   </tr>
                 ))}
             </tbody>
