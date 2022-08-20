@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Collapse, Button, Table, Badge } from "reactstrap";
+import { Collapse, Button, Table } from "reactstrap";
 
 class Toggle extends Component {
   constructor(props) {
