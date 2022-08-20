@@ -54,7 +54,7 @@ function HomePage() {
         </Row>
 
         <Row>
-          <Table striped borderless hover>
+          <Table striped borderless hover responsive>
             <thead>
               <tr>
                 <th>Language service</th>

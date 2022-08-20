@@ -66,7 +66,7 @@ const ServicePage = () => {
 
           <Toggle />
 
-          <Table hover borderless>
+          <Table hover borderless responsive>
             <thead>
               <tr>
                 <th>Article</th>
