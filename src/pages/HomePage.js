@@ -29,7 +29,7 @@ function HomePage() {
               published items published by each BBC World Service language and
               scores them by the quality of tagging. (Update interval:{" "}
               <span className="text-danger">
-                <strong>15</strong>
+                <strong>60</strong>
               </span>{" "}
               min)
             </p>
