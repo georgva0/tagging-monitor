@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# A React application that monitors metadata quality in BBC World Service languages articles
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
