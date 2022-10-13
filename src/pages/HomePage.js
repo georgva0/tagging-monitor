@@ -7,7 +7,8 @@ function HomePage() {
 
   useEffect(() => {
     fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/13YqOJHhi2lrt4hFMQ4FdZ6rv2N_Gf9oyMg2fdObTn4E/values/data!A2:B41?key=${process.env.REACT_APP_GOOGLE_CLOUD_KEY}`
+      `https://sheets.googleapis.com/v4/spreadsheets/1rl7RMNvgSgiF8z29WPfKJ8YO3l-JLbNk_C3s9FvW4Vo/values/data!A2:B41?key=${process.env.REACT_APP_GOOGLE_CLOUD_KEY}`
+      //`https://sheets.googleapis.com/v4/spreadsheets/13YqOJHhi2lrt4hFMQ4FdZ6rv2N_Gf9oyMg2fdObTn4E/values/data!A2:B41?key=${process.env.REACT_APP_GOOGLE_CLOUD_KEY}`
     )
       .then((response) => response.json())
       .then((data) => setScores(data.values));
