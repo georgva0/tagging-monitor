@@ -26,9 +26,9 @@ function HomePage() {
               What WS team is the best at tagging articles?{" "}
             </h3>
             <p className="mt-4">
-              This web application monitors the latest <strong>10</strong>{" "}
-              published items published by each BBC World Service language and
-              scores them by the quality of tagging. (Update interval:{" "}
+              This web application monitors the top <strong>10</strong> articles
+              published by each BBC World Service language on their front pages
+              and scores them by the quality of tagging. (Update interval:{" "}
               <span className="text-danger">
                 <strong>60</strong>
               </span>{" "}
