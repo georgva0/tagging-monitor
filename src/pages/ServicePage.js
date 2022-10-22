@@ -25,7 +25,7 @@ const ServicePage = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          setArticles(data.values);
+          setArticles(data.values.slice(0, 10));
         }
       })
       .catch((error) => console.log(error))
