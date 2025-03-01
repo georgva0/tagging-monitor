@@ -56,7 +56,7 @@ const ServicePage = () => {
             <strong>Audience Motivation </strong>
             tag,{" "}
             <strong>
-              <span className="text-danger">3-5</span>
+              <span className="text-danger">3-8</span>
             </strong>{" "}
             <strong>About </strong> tags and{" "}
             <strong>
@@ -105,7 +105,7 @@ const ServicePage = () => {
                       className={
                         parseInt(article[3]) === 0
                           ? "bg-danger text-white text-center"
-                          : parseInt(article[3]) > 2 && parseInt(article[3]) < 6
+                          : parseInt(article[3]) > 2 && parseInt(article[3]) < 9
                           ? "bg-success text-white text-center"
                           : "bg-warning text-white text-center"
                       }
