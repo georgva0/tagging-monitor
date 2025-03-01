@@ -42,7 +42,7 @@ function HomePage() {
               <strong>Audience Motivation </strong>
               tag,{" "}
               <strong>
-                <span className="text-danger">3-5</span>
+                <span className="text-danger">3-8</span>
               </strong>{" "}
               <strong>About </strong> tags and{" "}
               <strong>
